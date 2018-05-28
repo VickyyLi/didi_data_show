@@ -1,58 +1,41 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="百度地图,百度地图API，百度地图自定义工具，百度地图所见即所得工具" />
-    <meta name="description" content="百度地图API自定义地图，帮助用户在可视化操作下生成百度地图" />
-    <title>百度地图API自定义地图</title>
-    <!--引用百度地图API-->
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=CD1Oak4uozyOnxyRKyPwv3mkG5MFnoqF"></script>
-  </head>
-  
-  <body>
-    <!--百度地图容器-->
-    <div style="width:700px;height:550px;border:#ccc solid 1px;font-size:12px" id="map"></div>
-    <!--<p style="color:red;font-weight:600">地图生成工具基于百度地图JS api v2.0版本开发，使用请申请密匙。
-      <a href="http://developer.baidu.com/map/index.php?title=jspopular/guide/introduction" style="color:#2f83c7" target="_blank">了解如何申请密匙</a>
-      <a href="http://lbsyun.baidu.com/apiconsole/key?application=key" style="color:#2f83c7" target="_blank">申请密匙</a>-->
-    </p>
-  </body>
-  <script type="text/javascript">
-    //创建和初始化地图函数：
-    function initMap(){
-      createMap();//创建地图
-      setMapEvent();//设置地图事件
-      addMapControl();//向地图添加控件
-      addMapOverlay();//向地图添加覆盖物
-    }
-    function createMap(){ 
-      map = new BMap.Map("map"); 
-      map.centerAndZoom(new BMap.Point(104.081534,30.655822),12);
-    }
-    function setMapEvent(){
-      map.enableScrollWheelZoom();
-      map.enableKeyboard();
-      map.enableDragging();
-      map.enableDoubleClickZoom()
-    }
-    function addClickHandler(target,window){
-      target.addEventListener("click",function(){
-        target.openInfoWindow(window);
-      });
-    }
-    function addMapOverlay(){
-    }
-    //向地图添加控件
-    function addMapControl(){
-      var scaleControl = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
-      scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
-      map.addControl(scaleControl);
-      var navControl = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_RIGHT,type:3});
-      map.addControl(navControl);
-      var overviewControl = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:false});
-      map.addControl(overviewControl);
-    }
-    var map;
-      initMap();
-  </script>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <style type="text/css">
+    body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+    #l-map{height:100%;width:78%;float:left;border-right:2px solid #bcbcbc;}
+    #r-result{height:100%;width:20%;float:left;}
+  </style>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=kCuziPCdISOXZmFL5Afuz3YIcAGWG3IH"></script>
+  <title>recommended point</title>
+</head>
+<body>
+  <div id="allmap"></div>
+</body>
 </html>
+<script type="text/javascript">
+  // 百度地图API功能
+  var map = new BMap.Map("allmap");
+  var point = new BMap.Point(104.08,30.695);
+  map.centerAndZoom(point, 14);
+  // 编写自定义函数,创建标注
+  function addMarker(point){
+    var marker = new BMap.Marker(point);
+    map.addOverlay(marker);
+  }
+  // 随机向地图添加25个标注
+  var bounds = map.getBounds();
+  var sw = bounds.getSouthWest();
+  var ne = bounds.getNorthEast();
+  var lngSpan = Math.abs(sw.lng - ne.lng);
+  var latSpan = Math.abs(ne.lat - sw.lat);
+  var my_longitude=new Array(
+  104.07697,104.11748,104.11601,104.08484,104.08798,104.08869,104.06953,104.07928,104.08046,104.07988,104.07765,104.08442,104.0796,104.08296,104.08049,104.06889,104.07983,104.11868,104.08246,104.06259,104.04708,104.0803,104.08302,104.11024,104.07878,104.08971,104.08411,104.10304,104.07606,104.07958,104.07838,104.04258,104.08501,104.08513,104.07957,103.96276,104.04806,104.09097,104.08318,104.06897,103.9625,104.07876,104.08452,104.08559,104.09154,104.03819,104.04455,104.09162,104.07269,104.1098,104.11251,104.10635,104.1102,104.12673,104.07973,104.0587,104.08214,104.06994,104.08669,104.10525,104.06819,104.0868,104.08379,104.05108,104.14434,104.06888,104.07445,104.06891,104.04701,104.0928,104.09135,104.07349,104.05788,104.10974,104.08171,104.05546,104.05576,104.10178,104.11619,104.05808,104.07968,104.11116,104.15319,104.11637,104.0729)
+  var my_latitude=new Array(30.66076,30.67609,30.67857,30.69445,30.66654,30.71046,30.67326,30.70102,30.69261,30.69442,30.66359,30.67186,30.6612,30.69444,30.66077,30.67071,30.69216,30.67333,30.65985,30.66968,30.66972,30.701,30.69656,30.71084,30.70907,30.71133,30.68065,30.66861,30.68511,30.69176,30.66178,30.72384,30.66442,30.66428,30.6611,30.57495,30.67203,30.68816,30.69568,30.66846,30.57434,30.70175,30.67181,30.65967,30.68868,30.72456,30.72533,30.66125,30.64568,30.67539,30.67619,30.67436,30.67551,30.6741,30.66135,30.67364,30.69139,30.71527,30.66129,30.67401,30.64956,30.66093,30.66496,30.70798,30.67939,30.67088,30.70091,30.67016,30.67244,30.66723,30.66138,30.71856,30.70833,30.71164,30.66215,30.71997,30.72027,30.66815,30.67755,30.67137,30.70031,30.72713,30.73898,30.67731,30.70159)
+  for (var i = 0; i < 85; i ++) {
+    var point = new BMap.Point(my_longitude[i], my_latitude[i]);
+    addMarker(point);
+  }
+</script>

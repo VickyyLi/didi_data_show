@@ -103,26 +103,7 @@
 	</div><br>
     <div style="color:#ff5755; font-weight:bold; text-align:center;">Track data about 2016/11/01</div>
 </body>
-<script type="text/javascript">
-	// 百度地图API功能
-	var map = new BMap.Map("allmap");
-	map.centerAndZoom(new BMap.Point(104.082,30.668), 12);
-	var mapStyle={  style : "dark" }  
-	map.setMapStyle(mapStyle);
-	map.enableScrollWheelZoom();
-
-	map.addOverlay(polygon);   //增加折线
-	map.enableScrollWheelZoom(true);
-	var polygon = new BMap.Polygon([
-		new BMap.Point(104.127,30.6355),
-        new BMap.Point(104.127,30.7055),
-      	new BMap.Point(104.037,30.7055),
-        new BMap.Point(104.037,30.6355)
-      
-	], {strokeColor:"blue", strokeWeight:1, strokeOpacity:1,fillOpacity:0.2,fillColor:"blue"});  //创建多边形
-	map.addOverlay(polygon);   //增加多边形
-</script>
-        <script>
+	        <script>
             // note, we have townName field with a name specified for each datapoint and townName2 with only some of the names specified.
             // we use townName2 to display town names next to the bullet. And as these names would overlap if displayed next to each bullet,
             // we created this townName2 field and set only some of the names for this purpse.
@@ -465,4 +446,23 @@
                 chart.write("chartdiv");
             });
         </script>
+<script type="text/javascript">
+	// 百度地图API功能
+	var map = new BMap.Map("allmap");
+	map.centerAndZoom(new BMap.Point(104.082,30.668), 12);
+	var mapStyle={  style : "dark" }  
+	map.setMapStyle(mapStyle);
+	map.enableScrollWheelZoom();
+
+	map.addOverlay(polygon);   //增加折线
+	map.enableScrollWheelZoom(true);
+	var polygon = new BMap.Polygon([
+		new BMap.Point(104.127,30.6355),
+        new BMap.Point(104.127,30.7055),
+      	new BMap.Point(104.037,30.7055),
+        new BMap.Point(104.037,30.6355)
+      
+	], {strokeColor:"blue", strokeWeight:1, strokeOpacity:1,fillOpacity:0.2,fillColor:"blue"});  //创建多边形
+	map.addOverlay(polygon);   //增加多边形
+</script>
 </html>
